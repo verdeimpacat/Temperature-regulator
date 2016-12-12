@@ -1,15 +1,14 @@
 var triac;
-I2C2.setup( {scl: B10, sda: B3, bitrate: 19200 } );
-var htu = require('HTU21D').connect( I2C2 );
+var htu;
 var temp;
 var averageTemp;
 var humidity;
-var compHumidity; // improved accuracy for humidity
+var compHumidity;
 var targetTemp;
-// for the finetuning of the regulation we will keep in tempHistory the  
-// historical values of the last hour
 var tempHistory = Float32Array(60); 
 function onInit () {
+   I2C2.setup( {scl: B10, sda: B3, bitrate: 19200 } );
+   htu = require('HTU21D').connect( I2C2 );
    // Before anything else we should turn off the triac
    triac=A8;
    digitalWrite(triac,0); //this shoud reset the pin and set it as output
