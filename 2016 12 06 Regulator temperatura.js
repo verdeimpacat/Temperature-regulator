@@ -1,6 +1,5 @@
 var triac;
 I2C2.setup( {scl: B10, sda: B3, bitrate: 19200 } );
-console.log("i am alive 0"); 
 var htu = require('HTU21D').connect( I2C2 );
 var temp;
 var averageTemp;
